@@ -1,0 +1,22 @@
+<style>
+            table{
+                background-color:lightgrey;
+
+            }
+            div table 
+            {
+                background-color: orange;
+            }
+            .red
+            {
+                color:red
+            }
+            .green
+            {
+                color:green
+            }
+            .underline
+            {
+                text-decoration: underline;
+            }
+        </style>
