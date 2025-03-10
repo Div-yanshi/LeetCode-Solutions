@@ -1,0 +1,34 @@
+class Solution {
+    public int rob(int[] nums) {
+        int n=nums.length;
+        if(n==1)
+        return nums[0];
+        if(n==2)
+        return Math.max(nums[0],nums[1]);
+        int fs=f(nums,0,n-1);
+
+        int ss=f(nums,1,n);
+        return Math.max(fs,ss);
+
+      
+    
+        
+    }
+    private int f(int[] nums,int ind,int n)
+    { 
+        int dp1[]=new int[n];
+       
+      
+        dp1[ind]=nums[ind];
+        for(int i=ind+1;i<n;i++)
+        {
+            int p=nums[i];
+            if(i>1)
+
+            p+=dp1[i-2];
+           
+            int np=dp1[i-1];
+            dp1[i]=Math.max(p,np);
+        }
+        return dp1[n-1];}
+}
