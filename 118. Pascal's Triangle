@@ -1,0 +1,15 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> wl=new LinkedList<List<Integer>>();
+    
+         for(int i=0;i<numRows;i++){
+            List<Integer> l=new LinkedList<>();
+            int ans=1;
+        for(int c=0;c<=i;c++)
+        { l.add(ans);
+            ans=ans*(i-c)/(c+1);
+            
+        }wl.add(l);
+        }  return wl;      
+    }
+}
