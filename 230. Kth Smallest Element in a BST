@@ -1,0 +1,21 @@
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+          int pos[]=new int[1];
+        TreeNode node=inorder(root,k,pos);
+      
+       if(node==null){
+       return -1;}
+   
+       return node.val;}
+       private TreeNode inorder(TreeNode root,int k,int[] pos)
+       {
+        if(root==null)
+        return root;
+        TreeNode left=inorder(root.left,k,pos);
+        if(left!=null)
+        return left;
+        pos[0]++;
+        if(pos[0]==k)
+        return root;
+        return inorder(root.right,k,pos);
+       }}
