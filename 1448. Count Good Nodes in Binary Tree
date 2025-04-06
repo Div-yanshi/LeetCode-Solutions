@@ -1,0 +1,17 @@
+class Solution {
+    public int goodNodes(TreeNode root) {
+        int node=root.val,count=0;
+        return check(root,node);
+       
+    }
+   private int check(TreeNode root,int node){
+        if(root==null)
+        return 0;int cnt=0;
+           if(root.val >=node){
+           cnt=1;
+           node=root.val;}
+        cnt+=check(root.left,node);
+        cnt+=check(root.right,node);
+        return cnt;
+    }
+}
