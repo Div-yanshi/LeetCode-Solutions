@@ -1,0 +1,26 @@
+class Solution {
+    public String countAndSay(int n) {
+        String s="1";
+        if(n==1)
+        return "1";
+        for(int i=2;i<=n;i++){
+            s=freq(s);
+
+        }return s;
+        
+    } private static String freq(String s){
+       int ctr=1,i;
+        
+      StringBuilder fstr=new StringBuilder("");
+      for(i=1;i<s.length();i++){
+     if(s.charAt(i)==s.charAt(i-1))
+     ctr++;
+     else {
+        fstr.append(ctr);
+        fstr.append(s.charAt(i-1));
+        ctr=1;
+     }
+     } fstr.append(ctr).append(s.charAt(i-1));
+     return fstr.toString();
+    }
+}
