@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        
+        if(num==1)
+        return true;
+       else{
+        long s=0,e=num/4+1;
+        while(s<=e)
+        {
+            long mid=s+(e-s)/2;
+            long sq=mid*mid;
+            if(sq==num)
+            return true;
+            if(sq<num)
+            s=mid+1;
+            if(sq>num)
+            e=mid-1;
+        } }return false;
+    
+        
+    }
+}
