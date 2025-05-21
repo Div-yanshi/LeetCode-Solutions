@@ -1,0 +1,53 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        // Find the pivot (where the rotation happens)
+        int pivot = peak(nums);
+
+        // Try searching the target in both parts (before and after the pivot)
+        int ans = binarySearch(nums, 0, pivot, target); // Search in the left side
+        if (ans == -1) {
+            ans = binarySearch(nums, pivot + 1, nums.length - 1, target); // Search in the right side
+        }
+        return ans;
+    }
+
+    // Function to find the peak (pivot) in the rotated array
+    public int peak(int[] arr) {
+        int start = 0, end = arr.length - 1;
+        
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+
+            // Check if mid is the pivot
+            if (mid < end && arr[mid] > arr[mid + 1]) {
+                return mid;
+            }
+
+            // Check if the left half is sorted
+            if (arr[start] <= arr[mid]) {
+                start = mid + 1; // Search in the right half
+            } else {
+                end = mid; // Search in the left half
+            }
+        }
+        return start; // Start will be the peak
+    }
+
+    // Binary Search Function
+    public int binarySearch(int[] arr, int start, int end, int target) {
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            
+            if (arr[mid] == target) {
+                return mid;
+            }
+            
+            if (arr[mid] < target) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return -1; // Target not found
+    }
+}
