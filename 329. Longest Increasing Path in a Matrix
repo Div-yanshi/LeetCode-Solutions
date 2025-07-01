@@ -1,0 +1,26 @@
+class Solution {
+    int[][] dp=new int[200][200];
+    int m=0;
+    int n=0;
+    int max=0;
+    public int longestIncreasingPath(int[][] matrix) {
+        n=matrix.length;
+        m=matrix[0].length;
+        for(int[] d : dp) Arrays.fill(d,0);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                max=Math.max(max,helper(matrix,i,j,-1));    
+            }
+        }
+        return max;
+    }
+    private int helper(int[][] matrix,int i,int j,int prev){
+        if(i<0 || j<0 || i>=n || j>=m || matrix[i][j]<=prev) return 0;
+        if(dp[i][j]!=0) return dp[i][j];
+        dp[i][j]=1+Math.max(helper(matrix,i+1,j,matrix[i][j]),
+                            Math.max(helper(matrix,i-1,j,matrix[i][j]),
+                                    Math.max(helper(matrix,i,j+1,matrix[i][j]),
+                                            helper(matrix,i,j-1,matrix[i][j]))));
+        return dp[i][j];
+        }
+}
