@@ -1,0 +1,38 @@
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> ans=new ArrayList<>();
+        List<Integer> ds=new ArrayList<>();
+        boolean vis[]=new boolean[nums.length]; 
+        Arrays.sort(nums);     
+        recur(nums,vis,ans,ds);
+        return ans;
+        
+    }
+    private static void recur(int[] nums,boolean[] vis,List<List<Integer>> ans,  List<Integer> ds)
+      {
+        if(ds.size()==nums.length)
+        {
+            
+            ans.add(new ArrayList<>(ds));
+            return;
+        }
+        for(int i=0;i<nums.length;i++){
+            if(i>0 && nums[i-1]==nums[i])
+            continue;
+          
+            if(!(vis[i]))
+            {
+                vis[i]=true;
+                ds.add(nums[i]);
+                recur(nums,vis,ans,ds);
+                vis[i]=false;
+                ds.remove(ds.size()-1);
+            }
+        }
+
+
+      }
+
+
+}
+
