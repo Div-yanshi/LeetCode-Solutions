@@ -1,0 +1,38 @@
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+         ListNode copyhead=new ListNode(head.val);
+         ListNode copytail=copyhead;
+         ListNode temp=head.next;
+         while(temp!=null)
+         {
+            copytail.next=new ListNode(temp.val);
+            copytail=copytail.next;
+            temp=temp.next;
+         }
+         ListNode prev=null;
+         ListNode next=copyhead;
+         while(copyhead!=null)
+         {
+           next=copyhead.next;
+            copyhead.next=prev;
+            prev=copyhead;
+            copyhead=next;
+         }
+         while(prev!=null)
+         {
+            if(prev.val!=head.val)
+            return false;
+            prev=prev.next;
+            head=head.next;
+
+         }
+
+
+         return true;
+
+
+
+        
+    }
+}
