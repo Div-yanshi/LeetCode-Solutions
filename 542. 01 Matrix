@@ -1,0 +1,47 @@
+class Node{
+    int first,sec,third;
+     Node(int first,int sec,int third){
+        this.first=first;
+        this.sec=sec;
+        this.third=third;
+    }
+}
+class Solution {
+    public int[][] updateMatrix(int[][] mat) {
+         Queue<Node> queue=new LinkedList<Node>();
+         int vis[][]=new int[mat.length][mat[0].length];
+         int res[][]=new int[mat.length][mat[0].length];
+         for(int i=0;i<mat.length;i++){
+            for(int j=0;j<mat[0].length;j++){
+                if(mat[i][j]==0)
+                {
+                    queue.add(new Node(i,j,0));
+                    vis[i][j]=1;
+                    res[i][j]=0;
+                }
+            }
+         }  
+         int delrow[]={-1,0,1,0};
+         int delcol[]={0,-1,0,1};
+         while(!queue.isEmpty()){
+            int row=queue.peek().first;
+            int col=queue.peek().sec;
+            int steps=queue.peek().third;
+            queue.remove();
+            for(int i=0;i<4;i++){
+            int nrow=row+delrow[i];
+            int ncol=col+delcol[i];
+            while(nrow>=0 && nrow<mat.length && ncol>=0 && ncol<mat[0].length && vis[nrow][ncol]==0)
+
+            {
+                queue.add(new Node(nrow,ncol,steps+1));
+                vis[nrow][ncol]=1;
+                res[nrow][ncol]=steps+1;
+            }
+                 
+         }}
+
+            return res;
+        
+    }
+}
